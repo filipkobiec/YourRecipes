@@ -1,7 +1,10 @@
+using YourRecipes.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddSingleton<IRecipeData, InMemoryRecipeData>();
 
 var app = builder.Build();
 
