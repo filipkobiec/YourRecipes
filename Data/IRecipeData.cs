@@ -6,5 +6,7 @@ namespace YourRecipes.Data
     {
         IEnumerable<Recipe> GetRecipeByTitle(string title);
         Recipe GetById(Guid id);
+        Recipe Update(Recipe updateRecipe);
+        int Commit();
     }
 }

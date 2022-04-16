@@ -18,8 +18,29 @@ namespace YourRecipes.Data
             };
         }
 
+        public int Commit()
+        {
+            return 0;
+        }
+
         public Recipe GetById(Guid id) => _recipes.SingleOrDefault(r => r.Id == id);
 
         public IEnumerable<Recipe> GetRecipeByTitle(string title = null) => _recipes.Where(t => string.IsNullOrEmpty(title) || t.Title.StartsWith(title));
+
+        public Recipe Update(Recipe updateRecipe)
+        {
+            var recipe = GetById(updateRecipe.Id);
+
+            if (recipe != null)
+            {
+                recipe.Title = updateRecipe.Title;
+                recipe.Descritption = updateRecipe.Descritption;
+                recipe.Cuisine = updateRecipe.Cuisine;
+                recipe.ShortDescription = updateRecipe.ShortDescription;
+            }
+
+            return recipe;
+        }
+
     }
 }
