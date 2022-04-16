@@ -1,0 +1,10 @@
+﻿@page "{recipeId:Guid}"
+@model YourRecipes.Pages.Recipes.DetailModel
+@{
+}
+
+<h2>@Model.Recipe.Title</h2>
+<div>Id : @Model.Recipe.Id</div>
+<div>@Model.Recipe.ShortDescription</div>
+<div>@Model.Recipe.Cuisine</div>
+<a asp-page="./List" class="btn btn-primary">All Recipes</a>
