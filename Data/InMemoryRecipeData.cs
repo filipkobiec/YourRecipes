@@ -1,4 +1,5 @@
-﻿using YourRecipes.Models;
+﻿using System.Linq;
+using YourRecipes.Models;
 using static YourRecipes.Models.Recipe;
 
 namespace YourRecipes.Data
@@ -16,9 +17,9 @@ namespace YourRecipes.Data
                 new Recipe{Id = Guid.NewGuid(), Title = "Pizza2", Cuisine=CuisineType.Italian, ShortDescription="Delicious pizza2"}
             };
         }
-        public IEnumerable<Recipe> GetAll()
-        {
-            return _recipes.OrderBy(r => r.Title);
-        }
+
+        public Recipe GetById(Guid id) => _recipes.SingleOrDefault(r => r.Id == id);
+
+        public IEnumerable<Recipe> GetRecipeByTitle(string title = null) => _recipes.Where(t => string.IsNullOrEmpty(title) || t.Title.StartsWith(title));
     }
 }

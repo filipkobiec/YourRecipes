@@ -4,6 +4,7 @@ namespace YourRecipes.Data
 {
     public interface IRecipeData
     {
-        IEnumerable<Recipe> GetAll();
+        IEnumerable<Recipe> GetRecipeByTitle(string title);
+        Recipe GetById(Guid id);
     }
 }
