@@ -1,0 +1,31 @@
+﻿@page "{recipeId:Guid}"
+@model YourRecipes.Pages.Recipes.EditModel
+@{
+}
+
+<h2>Editing @Model.Recipe.Title</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="Recipe.Id"/>
+    <div class="form-group">
+        <label asp-for="Recipe.Title"></label>
+        <input asp-for="Recipe.Title" class="form-control"/>
+        <span class="text-danger" asp-validation-for="Recipe.Title"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Recipe.ShortDescription"></label>
+        <input asp-for="Recipe.ShortDescription" class="form-control"/>
+        <span class="text-danger" asp-validation-for="Recipe.ShortDescription"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Recipe.Descritption"></label>
+        <input asp-for="Recipe.Descritption" class="form-control"/>
+        <span class="text-danger" asp-validation-for="Recipe.Descritption"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Recipe.Cuisine"></label>
+        <select asp-for="Recipe.Cuisine" asp-items="Model.Cuisines" class="form-control"></select>
+        <span class="text-danger" asp-validation-for="Recipe.Cuisine"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>
