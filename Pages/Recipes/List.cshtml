@@ -1,0 +1,17 @@
+﻿@page
+@model ListModel
+@{
+}
+
+<h1>Recipes</h1>
+
+<table class="table">
+    @foreach (var recipe in @Model.Recipes)
+    {
+        <tr>
+            <td>@recipe.Title</td>
+            <td>@recipe.ShortDescription</td>
+            <td>@recipe.Cuisine</td>
+        </tr>
+    }
+</table>
