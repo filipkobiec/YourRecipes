@@ -14,7 +14,7 @@ namespace YourRecipes.Pages.Recipes
             _recipeData = recipeData;
         }
         public Recipe Recipe { get; set; }
-        public IActionResult OnGet(Guid recipeId)
+        public IActionResult OnGet(int recipeId)
         {
             Recipe = _recipeData.GetById(recipeId);
             if (Recipe == null)

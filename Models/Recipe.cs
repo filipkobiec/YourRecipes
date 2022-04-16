@@ -11,7 +11,7 @@ namespace YourRecipes.Models
             Indian,
             Mexican
         }
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [Required, StringLength(80)]
         public string Title { get; set; }

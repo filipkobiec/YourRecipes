@@ -21,9 +21,18 @@ namespace YourRecipes.Pages.Recipes
             _recipeData = recipeData;
             _htmlHelper = htmlHelper;
         }
-        public IActionResult OnGet(Guid recipeId)
+        public IActionResult OnGet(int? recipeId)
         {
-            Recipe = _recipeData.GetById(recipeId);
+            if (recipeId.HasValue)
+            {
+                Recipe = _recipeData.GetById(recipeId.Value);
+            }
+            else
+            {
+                Recipe = new Recipe();
+
+            }
+
             Cuisines = _htmlHelper.GetEnumSelectList<CuisineType>();
             if (Recipe == null)
                 return RedirectToPage("./NotFound");
@@ -32,13 +41,21 @@ namespace YourRecipes.Pages.Recipes
 
         public IActionResult OnPost()
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
+            {
+                Cuisines = _htmlHelper.GetEnumSelectList<CuisineType>();
+                return Page();
+            }
+
+            if (Recipe.Id > 0)
             {
                 _recipeData.Update(Recipe);
-                _recipeData.Commit();
             }
-            Cuisines = _htmlHelper.GetEnumSelectList<CuisineType>();
-            return Page();
+            else
+            {
+                _recipeData.Add(Recipe);
+            }
+            return RedirectToPage("./Detail", new { recipeId = Recipe.Id });
         }
     }
 }

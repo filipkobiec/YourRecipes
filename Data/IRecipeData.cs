@@ -5,8 +5,9 @@ namespace YourRecipes.Data
     public interface IRecipeData
     {
         IEnumerable<Recipe> GetRecipeByTitle(string title);
-        Recipe GetById(Guid id);
+        Recipe GetById(int id);
         Recipe Update(Recipe updateRecipe);
+        Recipe Add(Recipe newRecipe);
         int Commit();
     }
 }

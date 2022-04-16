@@ -12,10 +12,17 @@ namespace YourRecipes.Data
         {
             _recipes = new List<Recipe>()
             {
-                new Recipe{Id = Guid.NewGuid(), Title = "Pizza", Cuisine=CuisineType.Italian, ShortDescription="Delicious pizza"},
-                new Recipe{Id = Guid.NewGuid(), Title = "Pizza1", Cuisine=CuisineType.Italian, ShortDescription="Delicious pizza1"},
-                new Recipe{Id = Guid.NewGuid(), Title = "Pizza2", Cuisine=CuisineType.Italian, ShortDescription="Delicious pizza2"}
+                new Recipe{Id = 1, Title = "Pizza", Cuisine=CuisineType.Italian, ShortDescription="Delicious pizza"},
+                new Recipe{Id = 2, Title = "Pizza1", Cuisine=CuisineType.Italian, ShortDescription="Delicious pizza1"},
+                new Recipe{Id = 3, Title = "Pizza2", Cuisine=CuisineType.Italian, ShortDescription="Delicious pizza2"}
             };
+        }
+
+        public Recipe Add(Recipe newRecipe)
+        {
+            _recipes.Add(newRecipe);
+            newRecipe.Id = _recipes.Max(r => r.Id) + 1;
+            return newRecipe;
         }
 
         public int Commit()
@@ -23,7 +30,7 @@ namespace YourRecipes.Data
             return 0;
         }
 
-        public Recipe GetById(Guid id) => _recipes.SingleOrDefault(r => r.Id == id);
+        public Recipe GetById(int id) => _recipes.SingleOrDefault(r => r.Id == id);
 
         public IEnumerable<Recipe> GetRecipeByTitle(string title = null) => _recipes.Where(t => string.IsNullOrEmpty(title) || t.Title.StartsWith(title));
 
