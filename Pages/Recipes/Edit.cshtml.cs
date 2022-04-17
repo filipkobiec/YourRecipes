@@ -55,6 +55,9 @@ namespace YourRecipes.Pages.Recipes
             {
                 _recipeData.Add(Recipe);
             }
+            _recipeData.Commit();
+            TempData["Message"] = "Recipe saved!";
+
             return RedirectToPage("./Detail", new { recipeId = Recipe.Id });
         }
     }

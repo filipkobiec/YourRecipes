@@ -7,4 +7,10 @@
 <div>Id : @Model.Recipe.Id</div>
 <div>@Model.Recipe.ShortDescription</div>
 <div>@Model.Recipe.Cuisine</div>
+
+@if (Model.Message != null)
+{
+    <div class="aler alert-info">@Model.Message</div>
+}
+
 <a asp-page="./List" class="btn btn-primary">All Recipes</a>

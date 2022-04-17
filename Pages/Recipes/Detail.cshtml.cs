@@ -7,6 +7,9 @@ namespace YourRecipes.Pages.Recipes
 {
     public class DetailModel : PageModel
     {
+        [TempData]
+        public string Message { get; set; }
+
         private readonly IRecipeData _recipeData;
 
         public DetailModel(IRecipeData recipeData)
