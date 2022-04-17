@@ -1,9 +1,16 @@
+using Microsoft.EntityFrameworkCore;
 using YourRecipes.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.AddDbContextPool<YourRecipesDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("YourRecipes"));
+});
+
 builder.Services.AddSingleton<IRecipeData, InMemoryRecipeData>();
 
 var app = builder.Build();
