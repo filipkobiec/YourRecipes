@@ -6,7 +6,7 @@ namespace YourRecipes.Data
     {
         IEnumerable<Recipe> GetRecipeByTitle(string title);
         Recipe GetById(int id);
-        Recipe Update(Recipe updateRecipe);
+        Recipe Update(Recipe updatedRecipe);
         Recipe Add(Recipe newRecipe);
         Recipe Delete(int Id);
         int Commit();

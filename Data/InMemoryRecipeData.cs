@@ -46,16 +46,16 @@ namespace YourRecipes.Data
 
         public IEnumerable<Recipe> GetRecipeByTitle(string title = null) => _recipes.Where(t => string.IsNullOrEmpty(title) || t.Title.StartsWith(title));
 
-        public Recipe Update(Recipe updateRecipe)
+        public Recipe Update(Recipe updatedRecipe)
         {
-            var recipe = GetById(updateRecipe.Id);
+            var recipe = GetById(updatedRecipe.Id);
 
             if (recipe != null)
             {
-                recipe.Title = updateRecipe.Title;
-                recipe.Descritption = updateRecipe.Descritption;
-                recipe.Cuisine = updateRecipe.Cuisine;
-                recipe.ShortDescription = updateRecipe.ShortDescription;
+                recipe.Title = updatedRecipe.Title;
+                recipe.Descritption = updatedRecipe.Descritption;
+                recipe.Cuisine = updatedRecipe.Cuisine;
+                recipe.ShortDescription = updatedRecipe.ShortDescription;
             }
 
             return recipe;

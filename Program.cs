@@ -1,17 +1,24 @@
 using Microsoft.EntityFrameworkCore;
 using YourRecipes.Data;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-builder.Services.AddRazorPages();
+var connectionString = builder.Configuration.GetConnectionString("YourRecipesContextConnection");;
 
 builder.Services.AddDbContextPool<YourRecipesDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("YourRecipes"));
 });
 
-builder.Services.AddSingleton<IRecipeData, InMemoryRecipeData>();
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<YourRecipesDbContext>();;
+
+// Add services to the container.
+builder.Services.AddRazorPages();
+
+
+
+builder.Services.AddScoped<IRecipeData, SqlRecipeData>();
 
 var app = builder.Build();
 
@@ -29,6 +36,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseAuthentication();
 
 app.MapRazorPages();
 
