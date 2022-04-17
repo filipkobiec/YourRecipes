@@ -8,6 +8,7 @@ namespace YourRecipes.Data
         Recipe GetById(int id);
         Recipe Update(Recipe updateRecipe);
         Recipe Add(Recipe newRecipe);
+        Recipe Delete(int Id);
         int Commit();
     }
 }

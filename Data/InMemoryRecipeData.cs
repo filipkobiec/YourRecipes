@@ -30,6 +30,18 @@ namespace YourRecipes.Data
             return 0;
         }
 
+        public Recipe Delete(int Id)
+        {
+            var recipe = _recipes.FirstOrDefault(r => r.Id == Id);
+
+            if (recipe != null)
+            {
+                _recipes.Remove(recipe);
+            }
+
+            return recipe;
+        }
+
         public Recipe GetById(int id) => _recipes.SingleOrDefault(r => r.Id == id);
 
         public IEnumerable<Recipe> GetRecipeByTitle(string title = null) => _recipes.Where(t => string.IsNullOrEmpty(title) || t.Title.StartsWith(title));
